@@ -22,7 +22,7 @@ public class Main {
 
     public static void round() {
         System.out.println("**************");
-        System.out.println("HIT STATISTICK: ");
+        System.out.println("HIT STATISTICKS: ");
         System.out.println("**************");
         changeBossDefense();
         heroesHit();
