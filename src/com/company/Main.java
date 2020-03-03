@@ -3,12 +3,13 @@ package com.company;
 import java.util.Random;
 
 public class Main {
+    // Карыбеков Темирлан
     public static int bossHealth = 1000;
     public static int bossDamage = 50;
     public static String bossDefenseType = "";
     //_______________________________________
     public static int[] heroesHealth = {300, 200, 250, 250};
-    public static int[] heroesDamage = {20, 30, 25};
+    public static int[] heroesDamage = {20, 30, 25, 0};
     public static String[] heroesName = {"Warrior", "Magic", "Kenetick", "Medic"};
     public static String[] heroesAttackType = {"Physikal", "Magic", "Mental", "Medication"};
 
@@ -30,21 +31,20 @@ public class Main {
         medicSkill();
         System.out.println("^^^^^^^^^^^^^");
         printStatistic();
-        System.out.println("Next round");
     }
 
     public static void medicSkill() {
         Random r = new Random();
         int a = r.nextInt(3);
+        int terapy = 40;
         if (heroesHealth[3] > 0 && heroesHealth[a] < 100) {
             if (heroesHealth[a] > 0) {
-                heroesHealth[a] = heroesHealth[a] + 40;
-                System.out.println("Medic cured " + heroesName[a] + ": " + 40);
-            }
-         else {
+                heroesHealth[a] = heroesHealth[a] + terapy;
+                System.out.println("Medic cured " + heroesName[a] + ": " + terapy);
+            } else {
                 heroesHealth[a] = 0;
             }
-         }
+        }
     }
 
 
@@ -88,10 +88,12 @@ public class Main {
 
     public static void heroesHit() {
         for (int i = 0; i < heroesDamage.length; i++) {
+            if (i == 3)
+                continue;
             if (heroesHealth[i] > 0) {
                 if (bossDefenseType.equals(heroesAttackType[i])) {
                     Random r = new Random();
-                    int coef = r.nextInt(9) + 3;
+                    int coef = r.nextInt(10) + 4;
                     if ((bossHealth - heroesDamage[i] * coef) < 0) {
                         bossHealth = 0;
                     } else {
